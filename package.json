@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/EhanAhamed/ct.discord/issues"
   },
-  "homepage": "https://github.com/EhanAhamed/ct.discord#readme"
+  "homepage": "https://github.com/EhanAhamed/ct.discord#readme",
+  "devDependencies": {
+    "webcompounder": "^1.1.5"
+  }
 }
