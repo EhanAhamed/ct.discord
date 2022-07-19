@@ -1,5 +1,5 @@
 {
   "workflow": "bundle",
-  "input": [""],
+  "input": ["./src/discord-rpc/browser.js", "./src/index.js"],
   "output": "./index.js"
 }
