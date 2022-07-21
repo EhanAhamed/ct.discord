@@ -1,7 +1,7 @@
 {
     "main": {
-        "name": "Discord RPC",
-        "tagline": "Discord Rich Presence/Game Activity integration for ct.js games",
+        "name": "ct.discord",
+        "tagline": "Discord Rich Presence/Game Activity integration for ct.js games.",
         "version": "1.0.0",
         "authors": [{
             "name": "Ehan Ahamed",
@@ -16,16 +16,16 @@
             "type": "h2"
         }, {
             "name": "Application Client ID",
-            "help": "This is the client ID of your Discord application, find it in the Discord Developer Portal. If you did not create a Discord application yet, create one through the Discord Developer Portal.",
+            "help": "The client ID of your Discord application, find it in the Discord Developer Portal. If you did not create a Discord application yet, create one through the Discord Developer Portal.",
             "key": "clientId",
-            "default": "",
+            "default": "e",
             "type": "input"
         }, {
             "name": "Application Scopes",
             "help": "The Discord API Permissions your Discord application needs, the possible values are listed in the Discord Developer Portal.",
             "key": "scopes",
-            "default": [],
             "type": "array",
+            "default": ["ee"],
             "arrayType": "text"
         }]
     }
