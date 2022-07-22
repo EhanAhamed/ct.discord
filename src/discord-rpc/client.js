@@ -13,12 +13,28 @@
 
 "use strict";
 
-const EventEmitter = require("events");
+/*
+EventEmitter is Defined in discord-rpc/transports/ipc.js
+*/
 const { setTimeout, clearTimeout } = require("timers");
-const fetch = require("node-fetch");
+/*
+fetch is Defined in discord-rpc/transports/ipc.js
+*/
+/*
+constants.RPCCommands is Defined in discord-rpc/constants.js
+*/
 const RPCCommands = constants.RPCCommands;
+/*
+constants.RPCEvents is Defined in discord-rpc/constants.js
+*/
 const RPCEvents = constants.RPCEvents;
+/*
+constants.RelationshipTypes is Defined in discord-rpc/constants.js
+*/
 const RelationshipTypes = constants.RelationshipTypes;
+/*
+util.pid is Defined in discord-rpc/util.js
+*/
 const getPid = util.pid;
 
 function subKey(event, args) {

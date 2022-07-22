@@ -9,13 +9,16 @@
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/ipc.js */
+/* discord-rpc/transports/ipc.js */
 
 "use strict";
 
 const net = require("net");
 const EventEmitter = require("events");
 const fetch = require("node-fetch");
+/*
+util.uuid is Defined in discord-rpc/util.js
+*/
 const uuid = util.uuid;
 
 const OPCodes = {

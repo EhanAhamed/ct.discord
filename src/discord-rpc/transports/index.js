@@ -9,9 +9,16 @@
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/index.js */
+/* discord-rpc/transports/index.js */
 
 "use strict";
+
+/*
+ipc is defined in discord-rpc/transports/ipc.js
+*/
+/*
+WebSocketTransport is defined in discord-rpc/transports/websocket.js
+*/
 
 transports = {
   ipc: ipc,

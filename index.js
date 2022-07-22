@@ -201,7 +201,7 @@ constants.RelationshipTypes = {
 
 /* discord-rpc/util.js */
 
-"use strict";
+("use strict");
 
 let register;
 try {
@@ -262,13 +262,16 @@ util = {
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/ipc.js */
+/* discord-rpc/transports/ipc.js */
 
-"use strict";
+("use strict");
 
 const net = require("net");
 const EventEmitter = require("events");
 const fetch = require("node-fetch");
+/*
+util.uuid is Defined in discord-rpc/util.js
+*/
 const uuid = util.uuid;
 
 const OPCodes = {
@@ -452,11 +455,16 @@ ipc.decode = decode;
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/websocket.js */
+/* discord-rpc/transports/websocket.js */
 
-"use strict";
+("use strict");
 
-const EventEmitter = require("events");
+/*
+EventEmitter is Defined in discord-rpc/transports/ipc.js
+*/
+/*
+constants.browser is Defined in discord-rpc/constants.js
+*/
 const browser = constants.browser;
 
 // eslint-disable-next-line
@@ -540,9 +548,16 @@ class WebSocketTransport extends EventEmitter {
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/index.js */
+/* discord-rpc/transports/index.js */
 
-"use strict";
+("use strict");
+
+/*
+ipc is defined in discord-rpc/transports/ipc.js
+*/
+/*
+WebSocketTransport is defined in discord-rpc/transports/websocket.js
+*/
 
 transports = {
   ipc: ipc,
@@ -561,14 +576,30 @@ transports = {
 
 /* discord-rpc/client.js */
 
-"use strict";
+("use strict");
 
-const EventEmitter = require("events");
+/*
+EventEmitter is Defined in discord-rpc/transports/ipc.js
+*/
 const { setTimeout, clearTimeout } = require("timers");
-const fetch = require("node-fetch");
+/*
+fetch is Defined in discord-rpc/transports/ipc.js
+*/
+/*
+constants.RPCCommands is Defined in discord-rpc/constants.js
+*/
 const RPCCommands = constants.RPCCommands;
+/*
+constants.RPCEvents is Defined in discord-rpc/constants.js
+*/
 const RPCEvents = constants.RPCEvents;
+/*
+constants.RelationshipTypes is Defined in discord-rpc/constants.js
+*/
 const RelationshipTypes = constants.RelationshipTypes;
+/*
+util.pid is Defined in discord-rpc/util.js
+*/
 const getPid = util.pid;
 
 function subKey(event, args) {

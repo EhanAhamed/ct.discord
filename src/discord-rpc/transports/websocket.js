@@ -9,11 +9,16 @@
  * Modified Source Code is Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
  */
 
-/* transports/websocket.js */
+/* discord-rpc/transports/websocket.js */
 
 "use strict";
 
-const EventEmitter = require("events");
+/*
+EventEmitter is Defined in discord-rpc/transports/ipc.js
+*/
+/*
+constants.browser is Defined in discord-rpc/constants.js
+*/
 const browser = constants.browser;
 
 // eslint-disable-next-line
