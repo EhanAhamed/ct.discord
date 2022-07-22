@@ -11,7 +11,9 @@
 
 /* discord-rpc/transports/index.js */
 
-"use strict";
+/*
+"use strict"; stated in constants.js
+*/
 
 /*
 ipc is defined in discord-rpc/transports/ipc.js

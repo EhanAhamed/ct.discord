@@ -11,7 +11,9 @@
 
 /* discord-rpc/transports/websocket.js */
 
-"use strict";
+/*
+"use strict"; stated in constants.js
+*/
 
 /*
 EventEmitter is Defined in discord-rpc/transports/ipc.js

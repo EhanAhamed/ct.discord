@@ -11,7 +11,9 @@
 
 /* discord-rpc/util.js */
 
-"use strict";
+/*
+"use strict"; stated in constants.js
+*/
 
 let register;
 try {

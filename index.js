@@ -201,7 +201,9 @@ constants.RelationshipTypes = {
 
 /* discord-rpc/util.js */
 
-("use strict");
+/*
+"use strict"; stated in constants.js
+*/
 
 let register;
 try {
@@ -264,7 +266,9 @@ util = {
 
 /* discord-rpc/transports/ipc.js */
 
-("use strict");
+/*
+"use strict"; stated in constants.js
+*/
 
 const net = require("net");
 const EventEmitter = require("events");
@@ -457,7 +461,9 @@ ipc.decode = decode;
 
 /* discord-rpc/transports/websocket.js */
 
-("use strict");
+/*
+"use strict"; stated in constants.js
+*/
 
 /*
 EventEmitter is Defined in discord-rpc/transports/ipc.js
@@ -550,7 +556,9 @@ class WebSocketTransport extends EventEmitter {
 
 /* discord-rpc/transports/index.js */
 
-("use strict");
+/*
+"use strict"; stated in constants.js
+*/
 
 /*
 ipc is defined in discord-rpc/transports/ipc.js
@@ -576,7 +584,9 @@ transports = {
 
 /* discord-rpc/client.js */
 
-("use strict");
+/*
+"use strict"; stated in constants.js
+*/
 
 /*
 EventEmitter is Defined in discord-rpc/transports/ipc.js

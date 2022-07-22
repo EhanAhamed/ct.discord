@@ -11,7 +11,9 @@
 
 /* discord-rpc/transports/ipc.js */
 
-"use strict";
+/*
+"use strict"; stated in constants.js
+*/
 
 const net = require("net");
 const EventEmitter = require("events");
