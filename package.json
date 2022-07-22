@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/EhanAhamed/ct.discord#readme",
   "devDependencies": {
-    "webcompounder": "^1.1.5"
+    "webcompounder": "^1.1.6"
   }
 }
