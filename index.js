@@ -1,4 +1,12 @@
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
+
+/* discord-rpc/constants.js */
+
+"use strict";
 
 function keyMirror(arr) {
   const tmp = {};
@@ -8,113 +16,112 @@ function keyMirror(arr) {
   return tmp;
 }
 
-
-constants.browser = typeof window !== 'undefined';
+constants.browser = typeof window !== "undefined";
 
 constants.RPCCommands = keyMirror([
-  'DISPATCH',
-  'AUTHORIZE',
-  'AUTHENTICATE',
-  'GET_GUILD',
-  'GET_GUILDS',
-  'GET_CHANNEL',
-  'GET_CHANNELS',
-  'CREATE_CHANNEL_INVITE',
-  'GET_RELATIONSHIPS',
-  'GET_USER',
-  'SUBSCRIBE',
-  'UNSUBSCRIBE',
-  'SET_USER_VOICE_SETTINGS',
-  'SET_USER_VOICE_SETTINGS_2',
-  'SELECT_VOICE_CHANNEL',
-  'GET_SELECTED_VOICE_CHANNEL',
-  'SELECT_TEXT_CHANNEL',
-  'GET_VOICE_SETTINGS',
-  'SET_VOICE_SETTINGS_2',
-  'SET_VOICE_SETTINGS',
-  'CAPTURE_SHORTCUT',
-  'SET_ACTIVITY',
-  'SEND_ACTIVITY_JOIN_INVITE',
-  'CLOSE_ACTIVITY_JOIN_REQUEST',
-  'ACTIVITY_INVITE_USER',
-  'ACCEPT_ACTIVITY_INVITE',
-  'INVITE_BROWSER',
-  'DEEP_LINK',
-  'CONNECTIONS_CALLBACK',
-  'BRAINTREE_POPUP_BRIDGE_CALLBACK',
-  'GIFT_CODE_BROWSER',
-  'GUILD_TEMPLATE_BROWSER',
-  'OVERLAY',
-  'BROWSER_HANDOFF',
-  'SET_CERTIFIED_DEVICES',
-  'GET_IMAGE',
-  'CREATE_LOBBY',
-  'UPDATE_LOBBY',
-  'DELETE_LOBBY',
-  'UPDATE_LOBBY_MEMBER',
-  'CONNECT_TO_LOBBY',
-  'DISCONNECT_FROM_LOBBY',
-  'SEND_TO_LOBBY',
-  'SEARCH_LOBBIES',
-  'CONNECT_TO_LOBBY_VOICE',
-  'DISCONNECT_FROM_LOBBY_VOICE',
-  'SET_OVERLAY_LOCKED',
-  'OPEN_OVERLAY_ACTIVITY_INVITE',
-  'OPEN_OVERLAY_GUILD_INVITE',
-  'OPEN_OVERLAY_VOICE_SETTINGS',
-  'VALIDATE_APPLICATION',
-  'GET_ENTITLEMENT_TICKET',
-  'GET_APPLICATION_TICKET',
-  'START_PURCHASE',
-  'GET_SKUS',
-  'GET_ENTITLEMENTS',
-  'GET_NETWORKING_CONFIG',
-  'NETWORKING_SYSTEM_METRICS',
-  'NETWORKING_PEER_METRICS',
-  'NETWORKING_CREATE_TOKEN',
-  'SET_USER_ACHIEVEMENT',
-  'GET_USER_ACHIEVEMENTS',
+  "DISPATCH",
+  "AUTHORIZE",
+  "AUTHENTICATE",
+  "GET_GUILD",
+  "GET_GUILDS",
+  "GET_CHANNEL",
+  "GET_CHANNELS",
+  "CREATE_CHANNEL_INVITE",
+  "GET_RELATIONSHIPS",
+  "GET_USER",
+  "SUBSCRIBE",
+  "UNSUBSCRIBE",
+  "SET_USER_VOICE_SETTINGS",
+  "SET_USER_VOICE_SETTINGS_2",
+  "SELECT_VOICE_CHANNEL",
+  "GET_SELECTED_VOICE_CHANNEL",
+  "SELECT_TEXT_CHANNEL",
+  "GET_VOICE_SETTINGS",
+  "SET_VOICE_SETTINGS_2",
+  "SET_VOICE_SETTINGS",
+  "CAPTURE_SHORTCUT",
+  "SET_ACTIVITY",
+  "SEND_ACTIVITY_JOIN_INVITE",
+  "CLOSE_ACTIVITY_JOIN_REQUEST",
+  "ACTIVITY_INVITE_USER",
+  "ACCEPT_ACTIVITY_INVITE",
+  "INVITE_BROWSER",
+  "DEEP_LINK",
+  "CONNECTIONS_CALLBACK",
+  "BRAINTREE_POPUP_BRIDGE_CALLBACK",
+  "GIFT_CODE_BROWSER",
+  "GUILD_TEMPLATE_BROWSER",
+  "OVERLAY",
+  "BROWSER_HANDOFF",
+  "SET_CERTIFIED_DEVICES",
+  "GET_IMAGE",
+  "CREATE_LOBBY",
+  "UPDATE_LOBBY",
+  "DELETE_LOBBY",
+  "UPDATE_LOBBY_MEMBER",
+  "CONNECT_TO_LOBBY",
+  "DISCONNECT_FROM_LOBBY",
+  "SEND_TO_LOBBY",
+  "SEARCH_LOBBIES",
+  "CONNECT_TO_LOBBY_VOICE",
+  "DISCONNECT_FROM_LOBBY_VOICE",
+  "SET_OVERLAY_LOCKED",
+  "OPEN_OVERLAY_ACTIVITY_INVITE",
+  "OPEN_OVERLAY_GUILD_INVITE",
+  "OPEN_OVERLAY_VOICE_SETTINGS",
+  "VALIDATE_APPLICATION",
+  "GET_ENTITLEMENT_TICKET",
+  "GET_APPLICATION_TICKET",
+  "START_PURCHASE",
+  "GET_SKUS",
+  "GET_ENTITLEMENTS",
+  "GET_NETWORKING_CONFIG",
+  "NETWORKING_SYSTEM_METRICS",
+  "NETWORKING_PEER_METRICS",
+  "NETWORKING_CREATE_TOKEN",
+  "SET_USER_ACHIEVEMENT",
+  "GET_USER_ACHIEVEMENTS",
 ]);
 
 constants.RPCEvents = keyMirror([
-  'CURRENT_USER_UPDATE',
-  'GUILD_STATUS',
-  'GUILD_CREATE',
-  'CHANNEL_CREATE',
-  'RELATIONSHIP_UPDATE',
-  'VOICE_CHANNEL_SELECT',
-  'VOICE_STATE_CREATE',
-  'VOICE_STATE_DELETE',
-  'VOICE_STATE_UPDATE',
-  'VOICE_SETTINGS_UPDATE',
-  'VOICE_SETTINGS_UPDATE_2',
-  'VOICE_CONNECTION_STATUS',
-  'SPEAKING_START',
-  'SPEAKING_STOP',
-  'GAME_JOIN',
-  'GAME_SPECTATE',
-  'ACTIVITY_JOIN',
-  'ACTIVITY_JOIN_REQUEST',
-  'ACTIVITY_SPECTATE',
-  'ACTIVITY_INVITE',
-  'NOTIFICATION_CREATE',
-  'MESSAGE_CREATE',
-  'MESSAGE_UPDATE',
-  'MESSAGE_DELETE',
-  'LOBBY_DELETE',
-  'LOBBY_UPDATE',
-  'LOBBY_MEMBER_CONNECT',
-  'LOBBY_MEMBER_DISCONNECT',
-  'LOBBY_MEMBER_UPDATE',
-  'LOBBY_MESSAGE',
-  'CAPTURE_SHORTCUT_CHANGE',
-  'OVERLAY',
-  'OVERLAY_UPDATE',
-  'ENTITLEMENT_CREATE',
-  'ENTITLEMENT_DELETE',
-  'USER_ACHIEVEMENT_UPDATE',
-  'READY',
-  'ERROR',
+  "CURRENT_USER_UPDATE",
+  "GUILD_STATUS",
+  "GUILD_CREATE",
+  "CHANNEL_CREATE",
+  "RELATIONSHIP_UPDATE",
+  "VOICE_CHANNEL_SELECT",
+  "VOICE_STATE_CREATE",
+  "VOICE_STATE_DELETE",
+  "VOICE_STATE_UPDATE",
+  "VOICE_SETTINGS_UPDATE",
+  "VOICE_SETTINGS_UPDATE_2",
+  "VOICE_CONNECTION_STATUS",
+  "SPEAKING_START",
+  "SPEAKING_STOP",
+  "GAME_JOIN",
+  "GAME_SPECTATE",
+  "ACTIVITY_JOIN",
+  "ACTIVITY_JOIN_REQUEST",
+  "ACTIVITY_SPECTATE",
+  "ACTIVITY_INVITE",
+  "NOTIFICATION_CREATE",
+  "MESSAGE_CREATE",
+  "MESSAGE_UPDATE",
+  "MESSAGE_DELETE",
+  "LOBBY_DELETE",
+  "LOBBY_UPDATE",
+  "LOBBY_MEMBER_CONNECT",
+  "LOBBY_MEMBER_DISCONNECT",
+  "LOBBY_MEMBER_UPDATE",
+  "LOBBY_MESSAGE",
+  "CAPTURE_SHORTCUT_CHANGE",
+  "OVERLAY",
+  "OVERLAY_UPDATE",
+  "ENTITLEMENT_CREATE",
+  "ENTITLEMENT_DELETE",
+  "USER_ACHIEVEMENT_UPDATE",
+  "READY",
+  "ERROR",
 ]);
 
 constants.RPCErrors = {
@@ -176,40 +183,48 @@ constants.RelationshipTypes = {
   PENDING_OUTGOING: 4,
   IMPLICIT: 5,
 };
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
+
+/* discord-rpc/util.js */
+
+"use strict";
 
 let register;
 try {
-  const { app } = require('electron');
+  const { app } = require("electron");
   register = app.setAsDefaultProtocolClient.bind(app);
 } catch (err) {
   try {
-    register = require('register-scheme');
+    register = require("register-scheme");
   } catch (e) {} // eslint-disable-line no-empty
 }
 
-if (typeof register !== 'function') {
+if (typeof register !== "function") {
   register = () => false;
 }
 
 function pid() {
-  if (typeof process !== 'undefined') {
+  if (typeof process !== "undefined") {
     return process.pid;
   }
   return null;
 }
 
 const uuid4122 = () => {
-  let uuid = '';
+  let uuid = "";
   for (let i = 0; i < 32; i += 1) {
     if (i === 8 || i === 12 || i === 16 || i === 20) {
-      uuid += '-';
+      uuid += "-";
     }
     let n;
     if (i === 12) {
       n = 4;
     } else {
-      const random = Math.random() * 16 | 0;
+      const random = (Math.random() * 16) | 0;
       if (i === 16) {
         n = (random & 3) | 0;
       } else {
@@ -222,15 +237,23 @@ const uuid4122 = () => {
 };
 
 util = {
-    pid,
-    register,
-    uuid: uuid4122,
-}
-'use strict';
+  pid,
+  register,
+  uuid: uuid4122,
+};
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
 
-const net = require('net');
-const EventEmitter = require('events');
-const fetch = require('node-fetch');
+/* transports/ipc.js */
+
+"use strict";
+
+const net = require("net");
+const EventEmitter = require("events");
+const fetch = require("node-fetch");
 const uuid = util.uuid;
 
 const OPCodes = {
@@ -242,12 +265,14 @@ const OPCodes = {
 };
 
 function getIPCPath(id) {
-  if (process.platform === 'win32') {
+  if (process.platform === "win32") {
     return `\\\\?\\pipe\\discord-ipc-${id}`;
   }
-  const { env: { XDG_RUNTIME_DIR, TMPDIR, TMP, TEMP } } = process;
-  const prefix = XDG_RUNTIME_DIR || TMPDIR || TMP || TEMP || '/tmp';
-  return `${prefix.replace(/\/$/, '')}/discord-ipc-${id}`;
+  const {
+    env: { XDG_RUNTIME_DIR, TMPDIR, TMP, TEMP },
+  } = process;
+  const prefix = XDG_RUNTIME_DIR || TMPDIR || TMP || TEMP || "/tmp";
+  return `${prefix.replace(/\/$/, "")}/discord-ipc-${id}`;
 }
 
 function getIPC(id = 0) {
@@ -257,20 +282,20 @@ function getIPC(id = 0) {
       if (id < 10) {
         resolve(getIPC(id + 1));
       } else {
-        reject(new Error('Could not connect'));
+        reject(new Error("Could not connect"));
       }
     };
     const sock = net.createConnection(path, () => {
-      sock.removeListener('error', onerror);
+      sock.removeListener("error", onerror);
       resolve(sock);
     });
-    sock.once('error', onerror);
+    sock.once("error", onerror);
   });
 }
 
 async function findEndpoint(tries = 0) {
   if (tries > 30) {
-    throw new Error('Could not find endpoint');
+    throw new Error("Could not find endpoint");
   }
   const endpoint = `http://127.0.0.1:${6463 + (tries % 10)}`;
   try {
@@ -295,7 +320,7 @@ function encode(op, data) {
 }
 
 const working = {
-  full: '',
+  full: "",
   op: undefined,
 };
 
@@ -307,7 +332,7 @@ function decode(socket, callback) {
 
   let { op } = working;
   let raw;
-  if (working.full === '') {
+  if (working.full === "") {
     op = working.op = packet.readInt32LE(0);
     const len = packet.readInt32LE(4);
     raw = packet.slice(8, len + 8);
@@ -318,7 +343,7 @@ function decode(socket, callback) {
   try {
     const data = JSON.parse(working.full + raw);
     callback({ op, data }); // eslint-disable-line callback-return
-    working.full = '';
+    working.full = "";
     working.op = undefined;
   } catch (err) {
     working.full += raw;
@@ -335,16 +360,18 @@ class IPCTransport extends EventEmitter {
   }
 
   async connect() {
-    const socket = this.socket = await getIPC();
-    socket.on('close', this.onClose.bind(this));
-    socket.on('error', this.onClose.bind(this));
-    this.emit('open');
-    socket.write(encode(OPCodes.HANDSHAKE, {
-      v: 1,
-      client_id: this.client.clientId,
-    }));
+    const socket = (this.socket = await getIPC());
+    socket.on("close", this.onClose.bind(this));
+    socket.on("error", this.onClose.bind(this));
+    this.emit("open");
+    socket.write(
+      encode(OPCodes.HANDSHAKE, {
+        v: 1,
+        client_id: this.client.clientId,
+      })
+    );
     socket.pause();
-    socket.on('readable', () => {
+    socket.on("readable", () => {
       decode(socket, ({ op, data }) => {
         switch (op) {
           case OPCodes.PING:
@@ -354,19 +381,19 @@ class IPCTransport extends EventEmitter {
             if (!data) {
               return;
             }
-            if (data.cmd === 'AUTHORIZE' && data.evt !== 'ERROR') {
+            if (data.cmd === "AUTHORIZE" && data.evt !== "ERROR") {
               findEndpoint()
                 .then((endpoint) => {
                   this.client.request.endpoint = endpoint;
                 })
                 .catch((e) => {
-                  this.client.emit('error', e);
+                  this.client.emit("error", e);
                 });
             }
-            this.emit('message', data);
+            this.emit("message", data);
             break;
           case OPCodes.CLOSE:
-            this.emit('close', data);
+            this.emit("close", data);
             break;
           default:
             break;
@@ -376,7 +403,7 @@ class IPCTransport extends EventEmitter {
   }
 
   onClose(e) {
-    this.emit('close', e);
+    this.emit("close", e);
   }
 
   send(data, op = OPCodes.FRAME) {
@@ -385,7 +412,7 @@ class IPCTransport extends EventEmitter {
 
   async close() {
     return new Promise((r) => {
-      this.once('close', r);
+      this.once("close", r);
       this.send({}, OPCodes.CLOSE);
       this.socket.end();
     });
@@ -399,13 +426,21 @@ class IPCTransport extends EventEmitter {
 ipc = IPCTransport;
 ipc.encode = encode;
 ipc.decode = decode;
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
 
-const EventEmitter = require('events');
+/* transports/websocket.js */
+
+"use strict";
+
+const EventEmitter = require("events");
 const browser = constants.browser;
 
 // eslint-disable-next-line
-const WebSocket = browser ? window.WebSocket : require('ws');
+const WebSocket = browser ? window.WebSocket : require("ws");
 
 const pack = (d) => JSON.stringify(d);
 const unpack = (s) => JSON.parse(s);
@@ -424,7 +459,7 @@ class WebSocketTransport extends EventEmitter {
 
     this.ws = new WebSocket(
       `ws://127.0.0.1:${port}/?v=1&client_id=${this.client.clientId}`,
-      browser ? undefined : { origin: this.client.options.origin },
+      browser ? undefined : { origin: this.client.options.origin }
     );
     this.ws.onopen = this.onOpen.bind(this);
     this.ws.onclose = this.onClose.bind(this);
@@ -433,14 +468,14 @@ class WebSocketTransport extends EventEmitter {
   }
 
   onOpen() {
-    this.emit('open');
+    this.emit("open");
   }
 
   onClose(event) {
     if (!event.wasClean) {
       return;
     }
-    this.emit('close', event);
+    this.emit("close", event);
   }
 
   onError(event) {
@@ -449,7 +484,7 @@ class WebSocketTransport extends EventEmitter {
     } catch {} // eslint-disable-line no-empty
 
     if (this.tries > 20) {
-      this.emit('error', event.error);
+      this.emit("error", event.error);
     } else {
       setTimeout(() => {
         this.connect();
@@ -458,7 +493,7 @@ class WebSocketTransport extends EventEmitter {
   }
 
   onMessage(event) {
-    this.emit('message', unpack(event.data));
+    this.emit("message", unpack(event.data));
   }
 
   send(data) {
@@ -469,25 +504,42 @@ class WebSocketTransport extends EventEmitter {
 
   close() {
     return new Promise((r) => {
-      this.once('close', r);
+      this.once("close", r);
       this.ws.close();
     });
   }
 }
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
+
+/* transports/index.js */
+
+"use strict";
 
 transports = {
   ipc: ipc,
-  websocket: WebSocketTransport
-};'use strict';
+  websocket: WebSocketTransport,
+};
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
 
-const EventEmitter = require('events');
-const { setTimeout, clearTimeout } = require('timers');
-const fetch = require('node-fetch');
+/* discord-rpc/client.js */
+
+"use strict";
+
+const EventEmitter = require("events");
+const { setTimeout, clearTimeout } = require("timers");
+const fetch = require("node-fetch");
 const RPCCommands = constants.RPCCommands;
 const RPCEvents = constants.RPCEvents;
-const RelationshipTypes = constants.RelationshipTypes
-const getPid = util.pid
+const RelationshipTypes = constants.RelationshipTypes;
+const getPid = util.pid;
 
 function subKey(event, args) {
   return `${event}${JSON.stringify(args)}`;
@@ -530,17 +582,22 @@ class RPCClient extends EventEmitter {
 
     const Transport = transports[options.transport];
     if (!Transport) {
-      throw new TypeError('RPC_INVALID_TRANSPORT', options.transport);
+      throw new TypeError("RPC_INVALID_TRANSPORT", options.transport);
     }
 
     this.fetch = (method, path, { data, query } = {}) =>
-      fetch(`${this.fetch.endpoint}${path}${query ? new URLSearchParams(query) : ''}`, {
-        method,
-        body: data,
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      }).then(async (r) => {
+      fetch(
+        `${this.fetch.endpoint}${path}${
+          query ? new URLSearchParams(query) : ""
+        }`,
+        {
+          method,
+          body: data,
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`,
+          },
+        }
+      ).then(async (r) => {
         const body = await r.json();
         if (!r.ok) {
           const e = new Error(r.status);
@@ -550,7 +607,7 @@ class RPCClient extends EventEmitter {
         return body;
       });
 
-    this.fetch.endpoint = 'https://discord.com/api';
+    this.fetch.endpoint = "https://discord.com/api";
 
     /**
      * Raw transport userd
@@ -558,7 +615,7 @@ class RPCClient extends EventEmitter {
      * @private
      */
     this.transport = new Transport(this);
-    this.transport.on('message', this._onRpcMessage.bind(this));
+    this.transport.on("message", this._onRpcMessage.bind(this));
 
     /**
      * Map of nonces being expected from the transport
@@ -579,18 +636,21 @@ class RPCClient extends EventEmitter {
     }
     this._connectPromise = new Promise((resolve, reject) => {
       this.clientId = clientId;
-      const timeout = setTimeout(() => reject(new Error('RPC_CONNECTION_TIMEOUT')), 10e3);
+      const timeout = setTimeout(
+        () => reject(new Error("RPC_CONNECTION_TIMEOUT")),
+        10e3
+      );
       timeout.unref();
-      this.once('connected', () => {
+      this.once("connected", () => {
         clearTimeout(timeout);
         resolve(this);
       });
-      this.transport.once('close', () => {
+      this.transport.once("close", () => {
         this._expecting.forEach((e) => {
-          e.reject(new Error('connection closed'));
+          e.reject(new Error("connection closed"));
         });
-        this.emit('disconnected');
-        reject(new Error('connection closed'));
+        this.emit("disconnected");
+        reject(new Error("connection closed"));
       });
       this.transport.connect().catch(reject);
     });
@@ -618,7 +678,7 @@ class RPCClient extends EventEmitter {
     let { clientId, accessToken } = options;
     await this.connect(clientId);
     if (!options.scopes) {
-      this.emit('ready');
+      this.emit("ready");
       return this;
     }
     if (!accessToken) {
@@ -649,14 +709,17 @@ class RPCClient extends EventEmitter {
    * @private
    */
   _onRpcMessage(message) {
-    if (message.cmd === RPCCommands.DISPATCH && message.evt === RPCEvents.READY) {
+    if (
+      message.cmd === RPCCommands.DISPATCH &&
+      message.evt === RPCEvents.READY
+    ) {
       if (message.data.user) {
         this.user = message.data.user;
       }
-      this.emit('connected');
+      this.emit("connected");
     } else if (this._expecting.has(message.nonce)) {
       const { resolve, reject } = this._expecting.get(message.nonce);
-      if (message.evt === 'ERROR') {
+      if (message.evt === "ERROR") {
         const e = new Error(message.data.message);
         e.code = message.data.code;
         e.data = message.data;
@@ -676,9 +739,15 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    * @private
    */
-  async authorize({ scopes, clientSecret, rpcToken, redirectUri, prompt } = {}) {
+  async authorize({
+    scopes,
+    clientSecret,
+    rpcToken,
+    redirectUri,
+    prompt,
+  } = {}) {
     if (clientSecret && rpcToken === true) {
-      const body = await this.fetch('POST', '/oauth2/token/rpc', {
+      const body = await this.fetch("POST", "/oauth2/token/rpc", {
         data: new URLSearchParams({
           client_id: this.clientId,
           client_secret: clientSecret,
@@ -687,19 +756,19 @@ class RPCClient extends EventEmitter {
       rpcToken = body.rpc_token;
     }
 
-    const { code } = await this.request('AUTHORIZE', {
+    const { code } = await this.request("AUTHORIZE", {
       scopes,
       client_id: this.clientId,
       prompt,
       rpc_token: rpcToken,
     });
 
-    const response = await this.fetch('POST', '/oauth2/token', {
+    const response = await this.fetch("POST", "/oauth2/token", {
       data: new URLSearchParams({
         client_id: this.clientId,
         client_secret: clientSecret,
         code,
-        grant_type: 'authorization_code',
+        grant_type: "authorization_code",
         redirect_uri: redirectUri,
       }),
     });
@@ -714,16 +783,16 @@ class RPCClient extends EventEmitter {
    * @private
    */
   authenticate(accessToken) {
-    return this.request('AUTHENTICATE', { access_token: accessToken })
-      .then(({ application, user }) => {
+    return this.request("AUTHENTICATE", { access_token: accessToken }).then(
+      ({ application, user }) => {
         this.accessToken = accessToken;
         this.application = application;
         this.user = user;
-        this.emit('ready');
+        this.emit("ready");
         return this;
-      });
+      }
+    );
   }
-
 
   /**
    * Fetch a guild
@@ -840,7 +909,11 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   selectVoiceChannel(id, { timeout, force = false } = {}) {
-    return this.request(RPCCommands.SELECT_VOICE_CHANNEL, { channel_id: id, timeout, force });
+    return this.request(RPCCommands.SELECT_VOICE_CHANNEL, {
+      channel_id: id,
+      timeout,
+      force,
+    });
   }
 
   /**
@@ -852,7 +925,10 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   selectTextChannel(id, { timeout } = {}) {
-    return this.request(RPCCommands.SELECT_TEXT_CHANNEL, { channel_id: id, timeout });
+    return this.request(RPCCommands.SELECT_TEXT_CHANNEL, {
+      channel_id: id,
+      timeout,
+    });
   }
 
   /**
@@ -860,33 +936,32 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   getVoiceSettings() {
-    return this.request(RPCCommands.GET_VOICE_SETTINGS)
-      .then((s) => ({
-        automaticGainControl: s.automatic_gain_control,
-        echoCancellation: s.echo_cancellation,
-        noiseSuppression: s.noise_suppression,
-        qos: s.qos,
-        silenceWarning: s.silence_warning,
-        deaf: s.deaf,
-        mute: s.mute,
-        input: {
-          availableDevices: s.input.available_devices,
-          device: s.input.device_id,
-          volume: s.input.volume,
-        },
-        output: {
-          availableDevices: s.output.available_devices,
-          device: s.output.device_id,
-          volume: s.output.volume,
-        },
-        mode: {
-          type: s.mode.type,
-          autoThreshold: s.mode.auto_threshold,
-          threshold: s.mode.threshold,
-          shortcut: s.mode.shortcut,
-          delay: s.mode.delay,
-        },
-      }));
+    return this.request(RPCCommands.GET_VOICE_SETTINGS).then((s) => ({
+      automaticGainControl: s.automatic_gain_control,
+      echoCancellation: s.echo_cancellation,
+      noiseSuppression: s.noise_suppression,
+      qos: s.qos,
+      silenceWarning: s.silence_warning,
+      deaf: s.deaf,
+      mute: s.mute,
+      input: {
+        availableDevices: s.input.available_devices,
+        device: s.input.device_id,
+        volume: s.input.volume,
+      },
+      output: {
+        availableDevices: s.output.available_devices,
+        device: s.output.device_id,
+        volume: s.output.volume,
+      },
+      mode: {
+        type: s.mode.type,
+        autoThreshold: s.mode.auto_threshold,
+        threshold: s.mode.threshold,
+        shortcut: s.mode.shortcut,
+        delay: s.mode.delay,
+      },
+    }));
   }
 
   /**
@@ -904,21 +979,27 @@ class RPCClient extends EventEmitter {
       silence_warning: args.silenceWarning,
       deaf: args.deaf,
       mute: args.mute,
-      input: args.input ? {
-        device_id: args.input.device,
-        volume: args.input.volume,
-      } : undefined,
-      output: args.output ? {
-        device_id: args.output.device,
-        volume: args.output.volume,
-      } : undefined,
-      mode: args.mode ? {
-        type: args.mode.type,
-        auto_threshold: args.mode.autoThreshold,
-        threshold: args.mode.threshold,
-        shortcut: args.mode.shortcut,
-        delay: args.mode.delay,
-      } : undefined,
+      input: args.input
+        ? {
+            device_id: args.input.device,
+            volume: args.input.volume,
+          }
+        : undefined,
+      output: args.output
+        ? {
+            device_id: args.output.device,
+            volume: args.output.volume,
+          }
+        : undefined,
+      mode: args.mode
+        ? {
+            type: args.mode.type,
+            auto_threshold: args.mode.autoThreshold,
+            threshold: args.mode.threshold,
+            shortcut: args.mode.shortcut,
+            delay: args.mode.delay,
+          }
+        : undefined,
     });
   }
 
@@ -934,13 +1015,14 @@ class RPCClient extends EventEmitter {
     const subid = subKey(RPCEvents.CAPTURE_SHORTCUT_CHANGE);
     const stop = () => {
       this._subscriptions.delete(subid);
-      return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: 'STOP' });
+      return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: "STOP" });
     };
     this._subscriptions.set(subid, ({ shortcut }) => {
       callback(shortcut, stop);
     });
-    return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: 'START' })
-      .then(() => stop);
+    return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: "START" }).then(
+      () => stop
+    );
   }
 
   /**
@@ -966,15 +1048,17 @@ class RPCClient extends EventEmitter {
         timestamps.end = Math.round(timestamps.end.getTime());
       }
       if (timestamps.start > 2147483647000) {
-        throw new RangeError('timestamps.start must fit into a unix timestamp');
+        throw new RangeError("timestamps.start must fit into a unix timestamp");
       }
       if (timestamps.end > 2147483647000) {
-        throw new RangeError('timestamps.end must fit into a unix timestamp');
+        throw new RangeError("timestamps.end must fit into a unix timestamp");
       }
     }
     if (
-      args.largeImageKey || args.largeImageText
-      || args.smallImageKey || args.smallImageText
+      args.largeImageKey ||
+      args.largeImageText ||
+      args.smallImageKey ||
+      args.smallImageText
     ) {
       assets = {
         large_image: args.largeImageKey,
@@ -1111,11 +1195,12 @@ class RPCClient extends EventEmitter {
 
   getRelationships() {
     const types = Object.keys(RelationshipTypes);
-    return this.request(RPCCommands.GET_RELATIONSHIPS)
-      .then((o) => o.relationships.map((r) => ({
+    return this.request(RPCCommands.GET_RELATIONSHIPS).then((o) =>
+      o.relationships.map((r) => ({
         ...r,
         type: types[r.type],
-      })));
+      }))
+    );
   }
 
   /**
@@ -1138,9 +1223,15 @@ class RPCClient extends EventEmitter {
     await this.transport.close();
   }
 }
+/*!
+ * ct.discord v1.0.0 (https://github.com/EhanAhamed/ct.discord/)
+ * Copyright (c) 2022 Ehan Ahamed and contributors (https://github.com/EhanAhamed/ct.discord/graphs/contributors)
+ * Licensed under MIT (https://github.com/EhanAhamed/ct.discord/blob/main/LICENSE.txt)
+ */
+
 ct.discord = {
-    Client: RPCClient,
-    register(id) {
-        return util.register("discord-"+id);
-    }
+  Client: RPCClient,
+  register(id) {
+    return util.register("discord-" + id);
+  },
 };
