@@ -10,23 +10,6 @@
         "categories": [
             "integrations",
             "desktop"
-        ],
-        "fields": [{
-            "name": "Discord Application Info",
-            "type": "h2"
-        }, {
-            "name": "Application Client ID",
-            "help": "The client ID of your Discord application, find it in the Discord Developer Portal. If you did not create a Discord application yet, create one through the Discord Developer Portal.",
-            "key": "clientId",
-            "default": "e",
-            "type": "input"
-        }, {
-            "name": "Application Scopes",
-            "help": "The Discord API Permissions your Discord application needs, the possible values are listed in the Discord Developer Portal.",
-            "key": "scopes",
-            "type": "array",
-            "default": ["ee"],
-            "arrayType": "text"
-        }]
+        ]
     }
 }
