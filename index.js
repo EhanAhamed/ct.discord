@@ -21,6 +21,8 @@ function keyMirror(arr) {
   return tmp;
 }
 
+let constants;
+
 constants.browser = typeof window !== "undefined";
 
 constants.RPCCommands = keyMirror([
