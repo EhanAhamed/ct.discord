@@ -1,5 +1,14 @@
 {
   "workflow": "bundle",
-  "input": ["./src/discord-rpc/browser.js", "./src/index.js"],
-  "output": "./index.js"
+  "input": [
+    "./src/discord-rpc/constants.js",
+    "./src/discord-rpc/util.js",
+    "./src/discord-rpc/transports/ipc.js",
+    "./src/discord-rpc/transports/websocket.js",
+    "./src/discord-rpc/transports/index.js",
+    "./src/discord-rpc/client.js",
+    "./src/index.js"
+  ],
+  "output": "./index.js",
+  "glob": false
 }
