@@ -1,37 +1,45 @@
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
+
+/* discord-rpc/util.js */
+
+"use strict";
 
 let register;
 try {
-  const { app } = require('electron');
+  const { app } = require("electron");
   register = app.setAsDefaultProtocolClient.bind(app);
 } catch (err) {
   try {
-    register = require('register-scheme');
+    register = require("register-scheme");
   } catch (e) {} // eslint-disable-line no-empty
 }
 
-if (typeof register !== 'function') {
+if (typeof register !== "function") {
   register = () => false;
 }
 
 function pid() {
-  if (typeof process !== 'undefined') {
+  if (typeof process !== "undefined") {
     return process.pid;
   }
   return null;
 }
 
 const uuid4122 = () => {
-  let uuid = '';
+  let uuid = "";
   for (let i = 0; i < 32; i += 1) {
     if (i === 8 || i === 12 || i === 16 || i === 20) {
-      uuid += '-';
+      uuid += "-";
     }
     let n;
     if (i === 12) {
       n = 4;
     } else {
-      const random = Math.random() * 16 | 0;
+      const random = (Math.random() * 16) | 0;
       if (i === 16) {
         n = (random & 3) | 0;
       } else {
@@ -44,7 +52,7 @@ const uuid4122 = () => {
 };
 
 util = {
-    pid,
-    register,
-    uuid: uuid4122,
-}
+  pid,
+  register,
+  uuid: uuid4122,
+};

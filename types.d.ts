@@ -4,21 +4,14 @@ declare namespace ct {
    */
   namespace discord {
     /**
-     * @typedef {RPCClientOptions}
-     * @extends {ClientOptions}
-     * @prop {string} transport RPC transport. one of `ipc` or `websocket`
-     */
-
-    /**
      * The main hub for interacting with Discord RPC
-     * @extends {BaseClient}
      */
     class Client {
       /**
        * @param {RPCClientOptions} [options] Options for the client.
-       * You must provide a transport
+       * You must provide a transport; one of `ipc` or `websocket`
        */
-      constructor(options?: {});
+      constructor(options: { transport: "ipc" | "websocket" });
     }
     function register(id: string): void;
   }

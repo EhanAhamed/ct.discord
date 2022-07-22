@@ -1,8 +1,16 @@
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
 
-const net = require('net');
-const EventEmitter = require('events');
-const fetch = require('node-fetch');
+/* transports/ipc.js */
+
+"use strict";
+
+const net = require("net");
+const EventEmitter = require("events");
+const fetch = require("node-fetch");
 const uuid = util.uuid;
 
 const OPCodes = {
@@ -14,12 +22,14 @@ const OPCodes = {
 };
 
 function getIPCPath(id) {
-  if (process.platform === 'win32') {
+  if (process.platform === "win32") {
     return `\\\\?\\pipe\\discord-ipc-${id}`;
   }
-  const { env: { XDG_RUNTIME_DIR, TMPDIR, TMP, TEMP } } = process;
-  const prefix = XDG_RUNTIME_DIR || TMPDIR || TMP || TEMP || '/tmp';
-  return `${prefix.replace(/\/$/, '')}/discord-ipc-${id}`;
+  const {
+    env: { XDG_RUNTIME_DIR, TMPDIR, TMP, TEMP },
+  } = process;
+  const prefix = XDG_RUNTIME_DIR || TMPDIR || TMP || TEMP || "/tmp";
+  return `${prefix.replace(/\/$/, "")}/discord-ipc-${id}`;
 }
 
 function getIPC(id = 0) {
@@ -29,20 +39,20 @@ function getIPC(id = 0) {
       if (id < 10) {
         resolve(getIPC(id + 1));
       } else {
-        reject(new Error('Could not connect'));
+        reject(new Error("Could not connect"));
       }
     };
     const sock = net.createConnection(path, () => {
-      sock.removeListener('error', onerror);
+      sock.removeListener("error", onerror);
       resolve(sock);
     });
-    sock.once('error', onerror);
+    sock.once("error", onerror);
   });
 }
 
 async function findEndpoint(tries = 0) {
   if (tries > 30) {
-    throw new Error('Could not find endpoint');
+    throw new Error("Could not find endpoint");
   }
   const endpoint = `http://127.0.0.1:${6463 + (tries % 10)}`;
   try {
@@ -67,7 +77,7 @@ function encode(op, data) {
 }
 
 const working = {
-  full: '',
+  full: "",
   op: undefined,
 };
 
@@ -79,7 +89,7 @@ function decode(socket, callback) {
 
   let { op } = working;
   let raw;
-  if (working.full === '') {
+  if (working.full === "") {
     op = working.op = packet.readInt32LE(0);
     const len = packet.readInt32LE(4);
     raw = packet.slice(8, len + 8);
@@ -90,7 +100,7 @@ function decode(socket, callback) {
   try {
     const data = JSON.parse(working.full + raw);
     callback({ op, data }); // eslint-disable-line callback-return
-    working.full = '';
+    working.full = "";
     working.op = undefined;
   } catch (err) {
     working.full += raw;
@@ -107,16 +117,18 @@ class IPCTransport extends EventEmitter {
   }
 
   async connect() {
-    const socket = this.socket = await getIPC();
-    socket.on('close', this.onClose.bind(this));
-    socket.on('error', this.onClose.bind(this));
-    this.emit('open');
-    socket.write(encode(OPCodes.HANDSHAKE, {
-      v: 1,
-      client_id: this.client.clientId,
-    }));
+    const socket = (this.socket = await getIPC());
+    socket.on("close", this.onClose.bind(this));
+    socket.on("error", this.onClose.bind(this));
+    this.emit("open");
+    socket.write(
+      encode(OPCodes.HANDSHAKE, {
+        v: 1,
+        client_id: this.client.clientId,
+      })
+    );
     socket.pause();
-    socket.on('readable', () => {
+    socket.on("readable", () => {
       decode(socket, ({ op, data }) => {
         switch (op) {
           case OPCodes.PING:
@@ -126,19 +138,19 @@ class IPCTransport extends EventEmitter {
             if (!data) {
               return;
             }
-            if (data.cmd === 'AUTHORIZE' && data.evt !== 'ERROR') {
+            if (data.cmd === "AUTHORIZE" && data.evt !== "ERROR") {
               findEndpoint()
                 .then((endpoint) => {
                   this.client.request.endpoint = endpoint;
                 })
                 .catch((e) => {
-                  this.client.emit('error', e);
+                  this.client.emit("error", e);
                 });
             }
-            this.emit('message', data);
+            this.emit("message", data);
             break;
           case OPCodes.CLOSE:
-            this.emit('close', data);
+            this.emit("close", data);
             break;
           default:
             break;
@@ -148,7 +160,7 @@ class IPCTransport extends EventEmitter {
   }
 
   onClose(e) {
-    this.emit('close', e);
+    this.emit("close", e);
   }
 
   send(data, op = OPCodes.FRAME) {
@@ -157,7 +169,7 @@ class IPCTransport extends EventEmitter {
 
   async close() {
     return new Promise((r) => {
-      this.once('close', r);
+      this.once("close", r);
       this.send({}, OPCodes.CLOSE);
       this.socket.end();
     });

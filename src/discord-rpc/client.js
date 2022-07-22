@@ -1,12 +1,20 @@
-'use strict';
+/*!
+ * Discord.js RPC Extension v4.0.1 (https://github.com/discordjs/RPC/)
+ * Copyright (c) 2022 devsnek (https://github.com/discordjs/RPC/graphs/contributors)
+ * Licensed under MIT (https://github.com/discordjs/RPC/blob/master/LICENSE)
+ */
 
-const EventEmitter = require('events');
-const { setTimeout, clearTimeout } = require('timers');
-const fetch = require('node-fetch');
+/* discord-rpc/client.js */
+
+"use strict";
+
+const EventEmitter = require("events");
+const { setTimeout, clearTimeout } = require("timers");
+const fetch = require("node-fetch");
 const RPCCommands = constants.RPCCommands;
 const RPCEvents = constants.RPCEvents;
-const RelationshipTypes = constants.RelationshipTypes
-const getPid = util.pid
+const RelationshipTypes = constants.RelationshipTypes;
+const getPid = util.pid;
 
 function subKey(event, args) {
   return `${event}${JSON.stringify(args)}`;
@@ -49,17 +57,22 @@ class RPCClient extends EventEmitter {
 
     const Transport = transports[options.transport];
     if (!Transport) {
-      throw new TypeError('RPC_INVALID_TRANSPORT', options.transport);
+      throw new TypeError("RPC_INVALID_TRANSPORT", options.transport);
     }
 
     this.fetch = (method, path, { data, query } = {}) =>
-      fetch(`${this.fetch.endpoint}${path}${query ? new URLSearchParams(query) : ''}`, {
-        method,
-        body: data,
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      }).then(async (r) => {
+      fetch(
+        `${this.fetch.endpoint}${path}${
+          query ? new URLSearchParams(query) : ""
+        }`,
+        {
+          method,
+          body: data,
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`,
+          },
+        }
+      ).then(async (r) => {
         const body = await r.json();
         if (!r.ok) {
           const e = new Error(r.status);
@@ -69,7 +82,7 @@ class RPCClient extends EventEmitter {
         return body;
       });
 
-    this.fetch.endpoint = 'https://discord.com/api';
+    this.fetch.endpoint = "https://discord.com/api";
 
     /**
      * Raw transport userd
@@ -77,7 +90,7 @@ class RPCClient extends EventEmitter {
      * @private
      */
     this.transport = new Transport(this);
-    this.transport.on('message', this._onRpcMessage.bind(this));
+    this.transport.on("message", this._onRpcMessage.bind(this));
 
     /**
      * Map of nonces being expected from the transport
@@ -98,18 +111,21 @@ class RPCClient extends EventEmitter {
     }
     this._connectPromise = new Promise((resolve, reject) => {
       this.clientId = clientId;
-      const timeout = setTimeout(() => reject(new Error('RPC_CONNECTION_TIMEOUT')), 10e3);
+      const timeout = setTimeout(
+        () => reject(new Error("RPC_CONNECTION_TIMEOUT")),
+        10e3
+      );
       timeout.unref();
-      this.once('connected', () => {
+      this.once("connected", () => {
         clearTimeout(timeout);
         resolve(this);
       });
-      this.transport.once('close', () => {
+      this.transport.once("close", () => {
         this._expecting.forEach((e) => {
-          e.reject(new Error('connection closed'));
+          e.reject(new Error("connection closed"));
         });
-        this.emit('disconnected');
-        reject(new Error('connection closed'));
+        this.emit("disconnected");
+        reject(new Error("connection closed"));
       });
       this.transport.connect().catch(reject);
     });
@@ -137,7 +153,7 @@ class RPCClient extends EventEmitter {
     let { clientId, accessToken } = options;
     await this.connect(clientId);
     if (!options.scopes) {
-      this.emit('ready');
+      this.emit("ready");
       return this;
     }
     if (!accessToken) {
@@ -168,14 +184,17 @@ class RPCClient extends EventEmitter {
    * @private
    */
   _onRpcMessage(message) {
-    if (message.cmd === RPCCommands.DISPATCH && message.evt === RPCEvents.READY) {
+    if (
+      message.cmd === RPCCommands.DISPATCH &&
+      message.evt === RPCEvents.READY
+    ) {
       if (message.data.user) {
         this.user = message.data.user;
       }
-      this.emit('connected');
+      this.emit("connected");
     } else if (this._expecting.has(message.nonce)) {
       const { resolve, reject } = this._expecting.get(message.nonce);
-      if (message.evt === 'ERROR') {
+      if (message.evt === "ERROR") {
         const e = new Error(message.data.message);
         e.code = message.data.code;
         e.data = message.data;
@@ -195,9 +214,15 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    * @private
    */
-  async authorize({ scopes, clientSecret, rpcToken, redirectUri, prompt } = {}) {
+  async authorize({
+    scopes,
+    clientSecret,
+    rpcToken,
+    redirectUri,
+    prompt,
+  } = {}) {
     if (clientSecret && rpcToken === true) {
-      const body = await this.fetch('POST', '/oauth2/token/rpc', {
+      const body = await this.fetch("POST", "/oauth2/token/rpc", {
         data: new URLSearchParams({
           client_id: this.clientId,
           client_secret: clientSecret,
@@ -206,19 +231,19 @@ class RPCClient extends EventEmitter {
       rpcToken = body.rpc_token;
     }
 
-    const { code } = await this.request('AUTHORIZE', {
+    const { code } = await this.request("AUTHORIZE", {
       scopes,
       client_id: this.clientId,
       prompt,
       rpc_token: rpcToken,
     });
 
-    const response = await this.fetch('POST', '/oauth2/token', {
+    const response = await this.fetch("POST", "/oauth2/token", {
       data: new URLSearchParams({
         client_id: this.clientId,
         client_secret: clientSecret,
         code,
-        grant_type: 'authorization_code',
+        grant_type: "authorization_code",
         redirect_uri: redirectUri,
       }),
     });
@@ -233,16 +258,16 @@ class RPCClient extends EventEmitter {
    * @private
    */
   authenticate(accessToken) {
-    return this.request('AUTHENTICATE', { access_token: accessToken })
-      .then(({ application, user }) => {
+    return this.request("AUTHENTICATE", { access_token: accessToken }).then(
+      ({ application, user }) => {
         this.accessToken = accessToken;
         this.application = application;
         this.user = user;
-        this.emit('ready');
+        this.emit("ready");
         return this;
-      });
+      }
+    );
   }
-
 
   /**
    * Fetch a guild
@@ -359,7 +384,11 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   selectVoiceChannel(id, { timeout, force = false } = {}) {
-    return this.request(RPCCommands.SELECT_VOICE_CHANNEL, { channel_id: id, timeout, force });
+    return this.request(RPCCommands.SELECT_VOICE_CHANNEL, {
+      channel_id: id,
+      timeout,
+      force,
+    });
   }
 
   /**
@@ -371,7 +400,10 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   selectTextChannel(id, { timeout } = {}) {
-    return this.request(RPCCommands.SELECT_TEXT_CHANNEL, { channel_id: id, timeout });
+    return this.request(RPCCommands.SELECT_TEXT_CHANNEL, {
+      channel_id: id,
+      timeout,
+    });
   }
 
   /**
@@ -379,33 +411,32 @@ class RPCClient extends EventEmitter {
    * @returns {Promise}
    */
   getVoiceSettings() {
-    return this.request(RPCCommands.GET_VOICE_SETTINGS)
-      .then((s) => ({
-        automaticGainControl: s.automatic_gain_control,
-        echoCancellation: s.echo_cancellation,
-        noiseSuppression: s.noise_suppression,
-        qos: s.qos,
-        silenceWarning: s.silence_warning,
-        deaf: s.deaf,
-        mute: s.mute,
-        input: {
-          availableDevices: s.input.available_devices,
-          device: s.input.device_id,
-          volume: s.input.volume,
-        },
-        output: {
-          availableDevices: s.output.available_devices,
-          device: s.output.device_id,
-          volume: s.output.volume,
-        },
-        mode: {
-          type: s.mode.type,
-          autoThreshold: s.mode.auto_threshold,
-          threshold: s.mode.threshold,
-          shortcut: s.mode.shortcut,
-          delay: s.mode.delay,
-        },
-      }));
+    return this.request(RPCCommands.GET_VOICE_SETTINGS).then((s) => ({
+      automaticGainControl: s.automatic_gain_control,
+      echoCancellation: s.echo_cancellation,
+      noiseSuppression: s.noise_suppression,
+      qos: s.qos,
+      silenceWarning: s.silence_warning,
+      deaf: s.deaf,
+      mute: s.mute,
+      input: {
+        availableDevices: s.input.available_devices,
+        device: s.input.device_id,
+        volume: s.input.volume,
+      },
+      output: {
+        availableDevices: s.output.available_devices,
+        device: s.output.device_id,
+        volume: s.output.volume,
+      },
+      mode: {
+        type: s.mode.type,
+        autoThreshold: s.mode.auto_threshold,
+        threshold: s.mode.threshold,
+        shortcut: s.mode.shortcut,
+        delay: s.mode.delay,
+      },
+    }));
   }
 
   /**
@@ -423,21 +454,27 @@ class RPCClient extends EventEmitter {
       silence_warning: args.silenceWarning,
       deaf: args.deaf,
       mute: args.mute,
-      input: args.input ? {
-        device_id: args.input.device,
-        volume: args.input.volume,
-      } : undefined,
-      output: args.output ? {
-        device_id: args.output.device,
-        volume: args.output.volume,
-      } : undefined,
-      mode: args.mode ? {
-        type: args.mode.type,
-        auto_threshold: args.mode.autoThreshold,
-        threshold: args.mode.threshold,
-        shortcut: args.mode.shortcut,
-        delay: args.mode.delay,
-      } : undefined,
+      input: args.input
+        ? {
+            device_id: args.input.device,
+            volume: args.input.volume,
+          }
+        : undefined,
+      output: args.output
+        ? {
+            device_id: args.output.device,
+            volume: args.output.volume,
+          }
+        : undefined,
+      mode: args.mode
+        ? {
+            type: args.mode.type,
+            auto_threshold: args.mode.autoThreshold,
+            threshold: args.mode.threshold,
+            shortcut: args.mode.shortcut,
+            delay: args.mode.delay,
+          }
+        : undefined,
     });
   }
 
@@ -453,13 +490,14 @@ class RPCClient extends EventEmitter {
     const subid = subKey(RPCEvents.CAPTURE_SHORTCUT_CHANGE);
     const stop = () => {
       this._subscriptions.delete(subid);
-      return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: 'STOP' });
+      return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: "STOP" });
     };
     this._subscriptions.set(subid, ({ shortcut }) => {
       callback(shortcut, stop);
     });
-    return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: 'START' })
-      .then(() => stop);
+    return this.request(RPCCommands.CAPTURE_SHORTCUT, { action: "START" }).then(
+      () => stop
+    );
   }
 
   /**
@@ -485,15 +523,17 @@ class RPCClient extends EventEmitter {
         timestamps.end = Math.round(timestamps.end.getTime());
       }
       if (timestamps.start > 2147483647000) {
-        throw new RangeError('timestamps.start must fit into a unix timestamp');
+        throw new RangeError("timestamps.start must fit into a unix timestamp");
       }
       if (timestamps.end > 2147483647000) {
-        throw new RangeError('timestamps.end must fit into a unix timestamp');
+        throw new RangeError("timestamps.end must fit into a unix timestamp");
       }
     }
     if (
-      args.largeImageKey || args.largeImageText
-      || args.smallImageKey || args.smallImageText
+      args.largeImageKey ||
+      args.largeImageText ||
+      args.smallImageKey ||
+      args.smallImageText
     ) {
       assets = {
         large_image: args.largeImageKey,
@@ -630,11 +670,12 @@ class RPCClient extends EventEmitter {
 
   getRelationships() {
     const types = Object.keys(RelationshipTypes);
-    return this.request(RPCCommands.GET_RELATIONSHIPS)
-      .then((o) => o.relationships.map((r) => ({
+    return this.request(RPCCommands.GET_RELATIONSHIPS).then((o) =>
+      o.relationships.map((r) => ({
         ...r,
         type: types[r.type],
-      })));
+      }))
+    );
   }
 
   /**
