@@ -18,8 +18,5 @@
   "homepage": "https://github.com/EhanAhamed/ct.discord#readme",
   "devDependencies": {
     "webcompounder": "^1.1.5"
-  },
-  "dependencies": {
-    "discord-rpc": "^4.0.1"
   }
 }
