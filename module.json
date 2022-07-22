@@ -1,15 +1,14 @@
 {
-    "main": {
-        "name": "ct.discord",
-        "tagline": "Discord Rich Presence/Game Activity integration for ct.js games.",
-        "version": "1.0.0",
-        "authors": [{
-            "name": "Ehan Ahamed",
-            "mail": "ehanahamed@ehan.dev"
-        }],
-        "categories": [
-            "integrations",
-            "desktop"
-        ]
-    }
+  "main": {
+    "name": "ct.discord",
+    "tagline": "Discord Rich Presence/Game Activity integration for ct.js games.",
+    "version": "1.0.0",
+    "authors": [
+      {
+        "name": "Ehan Ahamed",
+        "mail": "ehanahamed@ehan.dev"
+      }
+    ],
+    "categories": ["integrations", "desktop"]
+  }
 }
